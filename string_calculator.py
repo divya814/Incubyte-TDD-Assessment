@@ -1,4 +1,5 @@
-# string_calculator.py
+''' String Calulator '''
+''' Allow the add method to handle any amount of numbers. '''
 
 def add(numbers: str) -> int:
     if not numbers:
