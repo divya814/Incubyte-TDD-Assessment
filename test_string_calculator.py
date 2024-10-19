@@ -16,6 +16,10 @@ class TestStringCalculator(unittest.TestCase):
         self.assertEqual(add("1,2,3,4,15"), 25)  # Test for any number of inputs
         self.assertEqual(add("10,20,30"), 60)
         self.assertEqual(add("140,320,370,1012"),1842)
+    
+    def test_newline_delimiter(self):
+        self.assertEqual(add("1\n2,3"), 6)  # Test with newline and comma mixed
+        self.assertEqual(add("1\n2\n3"), 6)  # Test with multiple newlines
 
 if __name__ == '__main__':
     unittest.main()
