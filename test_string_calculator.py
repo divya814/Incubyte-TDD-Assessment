@@ -25,11 +25,12 @@ class TestStringCalculator(unittest.TestCase):
         self.assertEqual(StringCalculator().add("//-\n5-7-2"), 14)  # Custom delimiter "-"
         self.assertEqual(StringCalculator().add("//|\n2|3|4"), 9)  # Custom delimiter "|"
 
-    # New tests for multi-character delimiters
-    def test_long_delimiter(self):
-        self.assertEqual(StringCalculator().add("//[***]\n1***2***3"), 6)  # Multi-char delimiter
-        self.assertEqual(StringCalculator().add("//[**]\n4**5**6"), 15)  # Multi-char delimiter
-        self.assertEqual(StringCalculator().add("//[%%]\n10%%20%%30%%40"), 100)  # Multi-char delimiter
+    def test_multiple_delimiters(self):
+        self.assertEqual(StringCalculator().add("//[*][%]\n1*2%3"), 6)  # Multiple delimiters "*", "%"
+        self.assertEqual(StringCalculator().add("//[!][@]\n1!2@3"), 6)  # Multiple delimiters "!", "@"
+        self.assertEqual(StringCalculator().add("//[***][&&&]\n1***2&&&3"), 6)  # Multiple delimiters "***", "&&&"
+        # New test case for multiple long delimiters
+        self.assertEqual(StringCalculator().add("//[**][%%]\n1**2%%3"), 6)  # Multiple long delimiters "**", "%%"
 
     def test_negative_numbers(self):
         with self.assertRaises(ValueError) as context:
