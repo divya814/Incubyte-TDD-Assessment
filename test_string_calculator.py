@@ -21,5 +21,10 @@ class TestStringCalculator(unittest.TestCase):
         self.assertEqual(add("1\n2,3"), 6)  # Test with newline and comma mixed
         self.assertEqual(add("1\n2\n3"), 6)  # Test with multiple newlines
 
+    def test_custom_delimiter(self):
+        self.assertEqual(add("//;\n1;2"), 3)  # Custom delimiter ";"
+        self.assertEqual(add("//-\n5-7-2"), 14)  # Custom delimiter "-"
+        self.assertEqual(add("//|\n2|3|4"), 9)  # Custom delimiter "|"
+        
 if __name__ == '__main__':
     unittest.main()
