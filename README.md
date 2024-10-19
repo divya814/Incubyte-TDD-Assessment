@@ -18,37 +18,7 @@ This is a simple String Calculator implemented in Python, designed to perform ad
 6. Support for Multi-Character Delimiters: Allows for delimiters of any length and multiple delimiters in a single string.
 
 ### Installation
-To use this String Calculator, ensure you have Python installed on your machine. Clone the repository and navigate to the project directory:
-
-### bash
-Copy code
-git clone https://github.com/yourusername/string-calculator.git
-cd string-calculator
-Usage
-You can use the StringCalculator class in your Python scripts. Here's how to get started:
-
-Import the StringCalculator Class:
-
-python
-Copy code
-from string_calculator import StringCalculator
-Create an Instance:
-
-python
-Copy code
-calculator = StringCalculator()
-Call the Add Method:
-
-python
-Copy code
-result = calculator.add("1,2,3")
-print(result)  # Output: 6
-Get the Call Count:
-
-python
-Copy code
-call_count = calculator.get_called_count()
-print(call_count)  # Output: Number of times add() was invoked
+To use this String Calculator, ensure you have Python installed on your machine. Clone the repository and navigate to the project directory. To run the test case file, use command - python -m unittest test_string_calculator.py
 
 ### Test Cases
 This project follows TDD, and the following tests are included in the test_string_calculator.py file:
