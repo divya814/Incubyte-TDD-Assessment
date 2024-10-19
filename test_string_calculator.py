@@ -25,6 +25,12 @@ class TestStringCalculator(unittest.TestCase):
         self.assertEqual(StringCalculator().add("//-\n5-7-2"), 14)  # Custom delimiter "-"
         self.assertEqual(StringCalculator().add("//|\n2|3|4"), 9)  # Custom delimiter "|"
 
+    # New tests for multi-character delimiters
+    def test_long_delimiter(self):
+        self.assertEqual(StringCalculator().add("//[***]\n1***2***3"), 6)  # Multi-char delimiter
+        self.assertEqual(StringCalculator().add("//[**]\n4**5**6"), 15)  # Multi-char delimiter
+        self.assertEqual(StringCalculator().add("//[%%]\n10%%20%%30%%40"), 100)  # Multi-char delimiter
+
     def test_negative_numbers(self):
         with self.assertRaises(ValueError) as context:
             StringCalculator().add("1,-2,3")
@@ -34,7 +40,7 @@ class TestStringCalculator(unittest.TestCase):
             StringCalculator().add("-1,-2,3")
         self.assertEqual(str(context.exception), "negative numbers not allowed -1, -2")
 
-    # New test for numbers greater than 1000
+    # Test for ignoring large numbers
     def test_ignore_large_numbers(self):
         calc = StringCalculator()
         self.assertEqual(calc.add("2,1001"), 2)  # Should ignore 1001

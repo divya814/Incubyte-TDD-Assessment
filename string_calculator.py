@@ -1,5 +1,4 @@
-''' String Calculator '''
-''' Structure reformatting and adding method to check number of calls to add method '''
+import re
 
 class StringCalculator:
     def __init__(self):
@@ -14,14 +13,26 @@ class StringCalculator:
         # Check for custom delimiter format at the start
         if numbers.startswith('//'):
             delimiter_part, numbers_part = numbers.split('\n', 1)  # Split into delimiter and numbers
-            custom_delimiter = delimiter_part[2:]  # Get the custom delimiter from the format //;
-            numbers = numbers_part.replace(custom_delimiter, ',')  # Replace the custom delimiter with a comma
+
+            # Extract delimiters, supporting multiple delimiters of any length
+            delimiters = re.findall(r'\[(.*?)\]', delimiter_part)
+
+            if not delimiters:
+                custom_delimiter = delimiter_part[2:]  # Fallback for a single character
+                delimiters = [custom_delimiter]
+                
+            # Join delimiters into a regex pattern
+            regex_delimiter = '|'.join(map(re.escape, delimiters))
+            numbers = numbers_part  # The rest of the numbers remain unchanged
+        else:
+            # Default delimiter is a comma
+            regex_delimiter = ','
 
         # Replace newlines with commas for standard processing
         numbers = numbers.replace('\n', ',')
-        
-        # Split the string and filter out any empty strings
-        number_list = [int(num) for num in numbers.split(',') if num]
+
+        # Split the string using regex for multiple delimiters
+        number_list = [int(num) for num in re.split(regex_delimiter, numbers) if num]
 
         # Check for negative numbers
         negatives = [num for num in number_list if num < 0]
