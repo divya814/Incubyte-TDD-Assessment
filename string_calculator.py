@@ -17,5 +17,10 @@ def add(numbers: str) -> int:
     # Filtered out any empty strings after the split (to avoid errors for cases like ",,")
     number_list = [int(num) for num in numbers.split(',') if num]
 
+    # Check for negative numbers
+    negatives = [num for num in number_list if num < 0]
+    if negatives:
+        raise ValueError(f"negative numbers not allowed {', '.join(map(str, negatives))}")
+
     return sum(number_list)
 
