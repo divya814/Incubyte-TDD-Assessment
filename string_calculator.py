@@ -28,7 +28,10 @@ class StringCalculator:
         if negatives:
             raise ValueError(f"negative numbers not allowed {', '.join(map(str, negatives))}")
 
+        # Ignore numbers larger than 1000
+        number_list = [num for num in number_list if num <= 1000]
+
         return sum(number_list)
 
     def get_called_count(self) -> int:
-        return self.call_count  # Returns how many times add has been called
+        return self.call_count  # Return how many times add has been called

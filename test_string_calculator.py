@@ -34,7 +34,12 @@ class TestStringCalculator(unittest.TestCase):
             StringCalculator().add("-1,-2,3")
         self.assertEqual(str(context.exception), "negative numbers not allowed -1, -2")
 
-    # New failing test for GetCalledCount
+    # New test for numbers greater than 1000
+    def test_ignore_large_numbers(self):
+        calc = StringCalculator()
+        self.assertEqual(calc.add("2,1001"), 2)  # Should ignore 1001
+        self.assertEqual(calc.add("1000,1001,1002,5"), 1005)  # Only 1000 and 5 should be summed
+
     def test_get_called_count(self):
         calc = StringCalculator()
         calc.add("1,2,3")
